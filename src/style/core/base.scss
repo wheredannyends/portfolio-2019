@@ -1,0 +1,123 @@
+*,
+*::after,
+*::before {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+html {
+   font-size: 62.5%;
+
+   @include screen(md) {
+      font-size: 59.25%;
+   }
+
+   @include screen(sm) {
+      font-size: 56%;
+   }
+
+   @include screen(xs) {
+      font-size: 52.75%;
+   }
+
+   @include screen(xxs) {
+      font-size: 50%;
+   }
+}
+
+body {
+   font-family: $font;
+   font-weight: 400;
+   font-size: 1.6rem;
+   color: $color-white;
+   background-color: $color-black;
+   overflow-y: scroll;
+   overflow-x: hidden;
+}
+
+main {
+   display: block;
+}
+
+button,
+input {
+   font-family: $font;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-weight: 500;
+   margin: 0;
+}
+
+h1 {
+   font-size: 4.4rem;
+}
+
+h2 {
+   font-size: 3.2rem;
+}
+
+h3 {
+   font-size: 2.4rem;
+}
+
+h4 {
+   font-size: 2rem;
+}
+
+h5 {
+   font-size: 1.8rem;
+}
+
+h6 {
+   font-size: 1.4rem;
+}
+
+img {
+   max-width: 100%;
+   vertical-align: bottom;
+}
+
+a {
+   color: $color-primary;
+   text-decoration: none;
+   transition: color 0.3s;
+
+   &:hover {
+      color: $color-primary-hover;
+      cursor: pointer;
+   }
+
+   &:focus {
+      outline: 0;
+   }
+
+   &:hover,
+   &:active {
+      outline: 0;
+   }
+}
+
+::selection {
+   background: $color-dark-grey-1;
+   color: $color-white;
+   text-shadow: none;
+}
+
+::-webkit-selection {
+   background: $color-dark-grey-1;
+   color: $color-white;
+   text-shadow: none;
+}
+
+::-moz-selection {
+   background: $color-dark-grey-1;
+   color: $color-white;
+   text-shadow: none;
+}

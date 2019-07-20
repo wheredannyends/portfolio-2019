@@ -1,0 +1,24 @@
+// Media Queries
+@mixin screen($point) {
+   @if $point == lg {
+      @media (max-width: 1199px) {
+         @content;
+      }
+   } @else if $point == md {
+      @media (max-width: 991px) {
+         @content;
+      }
+   } @else if $point == sm {
+      @media (max-width: 767px) {
+         @content;
+      }
+   } @else if $point == xs {
+      @media (max-width: 479px) {
+         @content;
+      }
+   } @else {
+      @media (max-width: $point) {
+         @content;
+      }
+   }
+}

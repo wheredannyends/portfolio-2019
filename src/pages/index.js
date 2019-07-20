@@ -1,3 +1,11 @@
-import React from "react"
+import React from 'react';
 
-export default () => <div>Hello world!</div>
+const App = () => {
+   return (
+      <>
+         <h1>Danny Burton</h1>
+      </>
+   );
+};
+
+export default App;
