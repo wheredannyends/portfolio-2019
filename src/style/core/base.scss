@@ -105,19 +105,19 @@ a {
 }
 
 ::selection {
-   background: $color-dark-grey-1;
+   background: $color-dark-grey;
    color: $color-white;
    text-shadow: none;
 }
 
 ::-webkit-selection {
-   background: $color-dark-grey-1;
+   background: $color-dark-grey;
    color: $color-white;
    text-shadow: none;
 }
 
 ::-moz-selection {
-   background: $color-dark-grey-1;
+   background: $color-dark-grey;
    color: $color-white;
    text-shadow: none;
 }

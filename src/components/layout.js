@@ -13,7 +13,10 @@ const Layout = ({ children }) => {
             <title>{title}</title>
             <link rel="stylesheet" href="https://use.typekit.net/qjk7wuk.css" />
          </Helmet>
-         <main>{children}</main>
+         <main>
+            {/* <Particles /> */}
+            {children}
+         </main>
       </>
    );
 };
