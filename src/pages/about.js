@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const App = () => {
+const About = () => {
    return <div></div>;
 };
 
-export default App;
+export default About;

@@ -1,7 +1,0 @@
-{
-   "prettier.stylelintIntegration": true,
-   "emmet.includeLanguages": {
-      "javascript": "javascriptreact"
-   },
-   "editor.formatOnSave": true
-}
