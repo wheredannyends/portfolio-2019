@@ -1,5 +1,8 @@
 @import './vendor/normalize.scss';
+
 @import './core/variables.scss';
 @import './core/functions.scss';
 @import './core/mixins.scss';
 @import './core/base.scss';
+
+@import './pages/index';
