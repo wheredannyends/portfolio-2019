@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 const Projects = () => {
    // const { store, dispatch } = useContext(Context);
    return (
-      <section className="home">
+      <section className="projects">
          <h1>Projects</h1>
       </section>
    );
