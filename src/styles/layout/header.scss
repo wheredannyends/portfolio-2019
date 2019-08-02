@@ -1,0 +1,62 @@
+.header {
+   position: absolute;
+   top: 0;
+   right: 0;
+   left: 0;
+   height: $header-height;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+
+   &__logo {
+      height: 6rem;
+      fill: $color-white;
+      transition: fill 0.2s;
+
+      &:hover {
+         fill: $color-primary;
+         animation: logo-hover 0.5s forwards;
+      }
+   }
+
+   &__nav {
+      display: flex;
+   }
+
+   &__nav-link {
+      font-weight: 500;
+      font-size: 1.8rem;
+      color: $color-white;
+
+      &::after {
+         content: '';
+         display: block;
+         width: 100%;
+         height: 2px;
+         background-color: $color-primary;
+         transform: scaleX(0) translateY(spacing(xxs));
+         transform-origin: left;
+         transition: transform 0.2s;
+      }
+
+      &:not(:last-child) {
+         margin-right: spacing(md);
+      }
+
+      &:hover::after {
+         transform: scaleX(1) translateY(spacing(xxs));
+      }
+   }
+
+   @keyframes logo-hover {
+      20% {
+         transform: rotate(-40deg) scale(0.9);
+      }
+      40% {
+         transform: rotate(-40deg) scale(0.9);
+      }
+      50% {
+         transform: rotate(20deg) scale(1.1);
+      }
+   }
+}

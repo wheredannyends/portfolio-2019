@@ -27,8 +27,6 @@ html {
 }
 
 body {
-   font-family: $font;
-   font-weight: 400;
    font-size: 1.6rem;
    color: $color-white;
    background-color: $color-black;
@@ -36,47 +34,12 @@ body {
    overflow-x: hidden;
 }
 
-main {
-   display: block;
-}
+.wrapper {
+   padding: 0 spacing(lg);
 
-button,
-input {
-   font-family: $font;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-   font-weight: 500;
-   margin: 0;
-}
-
-h1 {
-   font-size: 4.4rem;
-}
-
-h2 {
-   font-size: 3.2rem;
-}
-
-h3 {
-   font-size: 2.4rem;
-}
-
-h4 {
-   font-size: 2rem;
-}
-
-h5 {
-   font-size: 1.8rem;
-}
-
-h6 {
-   font-size: 1.4rem;
+   @include screen(sm) {
+      padding: 0 spacing(sm);
+   }
 }
 
 img {
@@ -85,19 +48,9 @@ img {
 }
 
 a {
-   color: $color-primary;
    text-decoration: none;
-   transition: color 0.3s;
 
-   &:hover {
-      color: $color-primary-hover;
-      cursor: pointer;
-   }
-
-   &:focus {
-      outline: 0;
-   }
-
+   &:focus,
    &:hover,
    &:active {
       outline: 0;

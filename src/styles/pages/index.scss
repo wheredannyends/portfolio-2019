@@ -1,0 +1,25 @@
+.home {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   text-align: center;
+   height: 100vh;
+
+   &__title {
+      max-width: 22ch;
+      margin-bottom: spacing(md);
+   }
+
+   &__button {
+
+      &:not(:last-child) {
+         margin-right: spacing(sm);
+      }
+   }
+
+   @include screen(sm) {
+      // align-items: flex-start;
+      // text-align: left;
+   }
+}
