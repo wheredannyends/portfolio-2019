@@ -1,0 +1,47 @@
+.button {
+   cursor: pointer;
+   padding: spacing(sm) spacing(md);
+   display: inline-flex;
+   justify-content: space-between;
+   align-items: center;
+   text-align: center;
+   border: 2px solid transparent;
+   border-radius: $border-radius;
+   background-color: $color-primary;
+   color: $color-white;
+   transition: color $transition, background-color $transition,
+      border-color $transition, box-shadow $transition;
+   box-shadow: shadow(3);
+   font-weight: $font-bold;
+   outline: none;
+
+   &:hover {
+      background-color: $color-primary-dark;
+      color: $color-white;
+      box-shadow: shadow(2);
+   }
+
+   &:active {
+      box-shadow: shadow(1);
+   }
+
+   &--alt {
+      background-color: $color-black;
+      border-color: $color-grey-darker;
+      color: $color-white;
+
+      &::after {
+         content: none;
+      }
+
+      &:hover {
+         background-color: $color-black;
+         border-color: $color-secondary;
+      }
+   }
+
+   i {
+      font-size: 1.8rem;
+      margin-left: spacing(sm);
+   }
+}

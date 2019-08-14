@@ -34,12 +34,33 @@ body {
    overflow-x: hidden;
 }
 
-.wrapper {
+main {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   // justify-content: center;
+   padding: spacing(md) 0;
+}
+
+.page-wrap {
+   @import '../layout/background';
+   background-color: $color-black;
+   background-image: $page-background;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   min-height: 100vh;
    padding: 0 spacing(lg);
 
    @include screen(sm) {
       padding: 0 spacing(sm);
    }
+}
+
+.inner-wrap {
+   max-width: 120rem;
+   width: 100%;
+   margin: 0 auto;
 }
 
 img {
@@ -48,29 +69,36 @@ img {
 }
 
 a {
+   color: $color-white;
    text-decoration: none;
+   transition: color $transition;
+   font-weight: $font-bold;
 
    &:focus,
    &:hover,
    &:active {
       outline: 0;
    }
+
+   &:hover {
+      color: $color-primary;
+   }
 }
 
 ::selection {
-   background: $color-dark-grey;
+   background: $color-grey-darker;
    color: $color-white;
    text-shadow: none;
 }
 
 ::-webkit-selection {
-   background: $color-dark-grey;
+   background: $color-grey-darker;
    color: $color-white;
    text-shadow: none;
 }
 
 ::-moz-selection {
-   background: $color-dark-grey;
+   background: $color-grey-darker;
    color: $color-white;
    text-shadow: none;
 }

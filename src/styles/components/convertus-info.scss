@@ -1,0 +1,63 @@
+.convertus {
+   display: grid;
+   grid-template-columns: max-content max-content;
+   grid-gap: spacing(lg);
+   padding: spacing(sm) spacing(lg);
+
+   @include screen(sm) {
+      display: flex;
+      flex-direction: column;
+   }
+
+   &__info {
+      text-align: right;
+      margin-right: spacing(sm);
+   }
+
+   &__logo {
+      fill: $color-grey-lighter;
+      width: 100%;
+      margin-bottom: spacing(lg);
+   }
+
+   &__button-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: spacing(sm);
+
+      @include screen(sm) {
+         grid-template-columns: 1fr;
+         margin-bottom: spacing(xl);
+      }
+   }
+
+   .timeline {
+      list-style-type: none;
+      position: relative;
+      padding-left: spacing(xl);
+
+      &::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         bottom: 0;
+         left: 0;
+         width: 2px;
+         background: linear-gradient($color-secondary-light, transparent);
+      }
+
+      &__item {
+         border-radius: $border-radius;
+
+         &:not(:last-child) {
+            margin-bottom: spacing(md);
+         }
+      }
+
+      &__time {
+         font-style: italic;
+         margin-bottom: spacing(xxs);
+         color: $color-grey-mid;
+      }
+   }
+}

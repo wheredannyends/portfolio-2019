@@ -1,13 +1,29 @@
-// Colors
-$color-primary: #5cd2b9;
-$color-primary-hover: #1fb393;
+// Primary Colors
+$color-primary: #9446ed;
+$color-primary-dark: #7a0ecc;
+$color-primary-light: #a368fc;
+
+// Secondary Colors
+$color-secondary: #1cd4d4;
+$color-secondary-dark: #0fb5ba;
+$color-secondary-light: #62f4eb;
 
 // Shades
-$color-black: #2e2e2e;
-$color-dark-grey: #616161;
-$color-medium-grey: #9b9b9b;
-$color-light-grey: #bdbdbd;
-$color-white: #ffffff;
+$color-black: #222222;
+$color-grey-darkest: #3b3b3b;
+$color-grey-darker: #515151;
+$color-grey-dark: #626262;
+$color-grey-mid: #7e7e7e;
+$color-grey-light: #9e9e9e;
+$color-grey-lighter: #b1b1b1;
+$color-grey-lightest: #cfcfcf;
+$color-white: #faf9f7;
 
 // Fixed values
 $header-height: 10rem;
+$border-radius: 3px;
+
+// Transitions
+$transition: 0.3s;
+$transition-long: 0.3s;
+$ease: cubic-bezier(0.6, 0.25, 0.24, 0.88);

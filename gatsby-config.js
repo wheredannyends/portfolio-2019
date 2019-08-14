@@ -1,27 +1,26 @@
-require('dotenv').config({
-   path: `.env.${process.env.NODE_ENV}`,
-});
-
 module.exports = {
    siteMetadata: {
       title: 'Danny Burton',
       description: 'Web Developer',
    },
    plugins: [
+      'gatsby-plugin-sass',
+      'gatsby-plugin-react-helmet',
+      'gatsby-plugin-mdx',
+      'gatsby-transformer-sharp',
+      'gatsby-plugin-sharp',
       {
-         resolve: `gatsby-source-contentful`,
+         resolve: 'gatsby-source-filesystem',
          options: {
-            spaceId: process.env.CONTENTFUL_SPACE_ID,
-            accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+            name: 'projects',
+            path: 'projects',
          },
       },
       {
          resolve: 'gatsby-plugin-layout',
          options: {
-            component: require.resolve(`./src/layout/layout.js`),
+            component: require.resolve('./src/layout/layout.js'),
          },
       },
-      `gatsby-plugin-sass`,
-      `gatsby-plugin-react-helmet`,
    ],
 };

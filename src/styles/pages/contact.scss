@@ -1,0 +1,73 @@
+.contact {
+
+   &__body-text {
+      color: $color-grey-lighter;
+      margin: spacing(sm) 0 spacing(xxl) 0;
+   }
+
+   &__form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+         'first last'
+         'email email'
+         'message message'
+         '. submit';
+      grid-gap: spacing(sm);
+   }
+
+   &__cell {
+
+      &--first {
+         grid-area: first;
+      }
+
+      &--last {
+         grid-area: last;
+      }
+
+      &--email {
+         grid-area: email;
+      }
+
+      &--message {
+         grid-area: message;
+      }
+   }
+
+   &__label {
+      display: block;
+      margin: 0 0 spacing(xs) spacing(xs);
+      color: $color-grey-dark;
+   }
+
+   &__input {
+      width: 100%;
+      font-weight: $font-bold;
+      display: block;
+      background-color: $color-grey-darkest !important;
+      outline: none;
+      padding: spacing(xs);
+      border-radius: $border-radius;
+      border: 2px solid transparent;
+      font-size: 2.4rem;
+      color: $color-white;
+      resize: vertical;
+      transition: border-color $transition;
+      box-shadow: shadow(2);
+
+      &:focus {
+         border-color: $color-secondary;
+         box-shadow: shadow(1);
+      }
+
+      &--message {
+         height: 12rem;
+      }
+   }
+
+   &__submit {
+      grid-area: submit;
+      justify-self: flex-end;
+   }
+}

@@ -1,9 +1,9 @@
 import React, { useReducer } from 'react';
 import { Helmet } from 'react-helmet';
 import { Context, initialState, reducer } from './store';
-import Metadata from '../utilities/use-sitemetadata';
+import Metadata from '../queries/use-sitemetadata';
 import Header from './header';
-import Background from './background';
+import Footer from './footer';
 import '../styles/main.scss';
 
 const Layout = ({ children, location }) => {
@@ -17,9 +17,11 @@ const Layout = ({ children, location }) => {
             <title>{title}</title>
             <meta name="description" content={description} />
          </Helmet>
-         {/* <Background /> */}
-         <Header />
-         <main className="wrapper">{children}</main>
+         <div className="page-wrap">
+            <Header location={location.pathname} />
+            <main>{children}</main>
+            <Footer />
+         </div>
       </Context.Provider>
    );
 };

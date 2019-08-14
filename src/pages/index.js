@@ -5,13 +5,28 @@ const App = () => {
    return (
       <section className="home">
          <h1 className="home__title">
-            Hi! My name is Danny Burton. I'm a Front End Developer.
+            <span>Hi. My name is Danny Burton. </span>
+            <span>I'm a Front End Developer.</span>
          </h1>
-         <div>
-            <Link to="/projects" className="home__button button button--alt">
+         <p className="home__body">
+            <span>I develop user interfaces using web technologies. </span>
+            <span>
+               Currently a Senior Front-End Developer at{' '}
+               <a
+                  href="//www.convertus.com"
+                  target="_blank"
+                  className="home__body-link"
+               >
+                  Convertus
+               </a>
+               .
+            </span>
+         </p>
+         <div className="home__button-area">
+            <Link to="/contact" className="home__button button button--alt">
                Contact Me
             </Link>
-            <Link to="/projects" className="home__button button">
+            <Link to="/work" className="home__button button">
                View Work
             </Link>
          </div>

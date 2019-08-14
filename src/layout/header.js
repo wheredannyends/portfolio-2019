@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-const Header = () => {
+const Header = ({ location }) => {
+   console.log(location);
    return (
-      <header className="header wrapper">
+      <header className="header">
          <Link to="/">
             <svg
                className="header__logo"
@@ -16,11 +17,31 @@ const Header = () => {
             </svg>
          </Link>
          <nav className="header__nav">
-            <Link to="/projects" className="header__nav-link">
-               Projects
+            <Link
+               to="/work"
+               className={`header__nav-link ${
+                  location.indexOf('/work') !== -1
+                     ? 'header__nav-link--active'
+                     : ''
+               }`}
+            >
+               Work
             </Link>
-            <Link to="/about" className="header__nav-link">
+            <Link
+               to="/about"
+               className={`header__nav-link ${
+                  location === '/about' ? 'header__nav-link--active' : ''
+               }`}
+            >
                About
+            </Link>
+            <Link
+               to="/contact"
+               className={`header__nav-link ${
+                  location === '/contact' ? 'header__nav-link--active' : ''
+               }`}
+            >
+               Contact
             </Link>
          </nav>
       </header>

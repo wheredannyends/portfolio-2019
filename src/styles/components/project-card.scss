@@ -1,0 +1,54 @@
+.project-card {
+   display: grid;
+   grid-template-rows: auto min-content;
+   grid-gap: spacing(sm);
+   height: 36rem;
+   border-radius: $border-radius;
+   overflow: hidden;
+   box-shadow: shadow(3);
+   transition: box-shadow $transition;
+
+   &:hover {
+      box-shadow: shadow(2);
+   }
+
+   &:active,
+   &:focus {
+      box-shadow: shadow(1);
+   }
+
+   &__banner {
+      grid-area: 1 / 1 / 3 / 2;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+   }
+
+   &__label {
+      padding: spacing(sm);
+      grid-area: 2 / 1 / 3 / 1;
+      background: $color-grey-darker;
+      color: $color-white;
+      z-index: 1;
+   }
+
+   &__arrow {
+      font-size: 1.8rem;
+      margin-left: spacing(xs);
+      transition: transform $transition;
+   }
+
+   &__stack {
+      display: flex;
+      list-style-type: none;
+   }
+
+   &__tech {
+      font-size: 2.4rem;
+      color: $color-grey-lighter;
+
+      &:not(:last-child) {
+         margin-right: spacing(xs);
+      }
+   }
+}

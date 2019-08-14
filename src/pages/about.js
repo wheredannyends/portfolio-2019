@@ -1,8 +1,6 @@
-import React, { useContext } from 'react';
-// import { Context } from '../layout/store';
+import React from 'react';
 
 const About = () => {
-   // const { store, dispatch } = useContext(Context);
    return <></>;
 };
 
