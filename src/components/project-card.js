@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { FiBriefcase, FiClock } from 'react-icons/fi';
 import Image from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
@@ -17,13 +18,13 @@ const ProjectCard = ({ project }) => {
             <h5 className="project-card__subtitle">{project.subtitle}</h5>
             <ul className="project-card__info">
                <li className="project-card__info-item">
-                  <i className="far fa-briefcase project-card__icon-label"></i>
+                  <FiBriefcase className="project-card__icon-label"></FiBriefcase>
                   <span className="project-card__info-value">
                      {project.role}
                   </span>
                </li>
                <li className="project-card__info-item">
-                  <i className="far fa-clock project-card__icon-label"></i>
+                  <FiClock className="project-card__icon-label"></FiClock>
                   <span className="project-card__info-value">
                      {project.timeline}
                   </span>

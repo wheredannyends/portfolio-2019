@@ -3,21 +3,34 @@
    align-items: center;
    padding: spacing(xxxl) 0;
 
+   @include screen(sm) {
+      flex-direction: column;
+   }
+
    &:nth-child(even) {
       flex-direction: row-reverse;
 
+      @include screen(sm) {
+         flex-direction: column;
+      }
+
       .project-card__image {
-         margin-right: 0;
-         margin-left: spacing(md);
+         margin: 0 0 0 spacing(md);
+
+         @include screen(sm) {
+            margin: 0 0 spacing(lg);
+         }
       }
    }
 
    &__image {
       flex: 1;
-      margin-right: spacing(md);
+      margin: 0 spacing(md) 0 0;
 
-      img {
-         filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+      @include screen(sm) {
+         height: 30rem;
+         width: 100%;
+         margin: 0 0 spacing(lg);
       }
    }
 
@@ -37,6 +50,8 @@
    }
 
    &__info-item {
+      display: flex;
+      align-items: center;
       width: max-content;
    }
 

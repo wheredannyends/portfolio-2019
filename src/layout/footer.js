@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaLinkedinIn, FaGithub, FaTwitter, FaCodepen } from 'react-icons/fa';
 
 const Footer = () => {
    return (
@@ -10,7 +11,7 @@ const Footer = () => {
                   className="social__link"
                   target="_blank"
                >
-                  <i className="social__icon fab fa-linkedin-in"></i>
+                  <FaLinkedinIn className="social__icon"></FaLinkedinIn>
                </a>
             </li>
             <li className="social__item">
@@ -19,7 +20,7 @@ const Footer = () => {
                   className="social__link"
                   target="_blank"
                >
-                  <i className="social__icon fab fa-github"></i>
+                  <FaGithub className="social__icon"></FaGithub>
                </a>
             </li>
             <li className="social__item">
@@ -28,7 +29,7 @@ const Footer = () => {
                   className="social__link"
                   target="_blank"
                >
-                  <i className="social__icon fab fa-twitter"></i>
+                  <FaTwitter className="social__icon"></FaTwitter>
                </a>
             </li>
             <li className="social__item">
@@ -37,7 +38,7 @@ const Footer = () => {
                   className="social__link"
                   target="_blank"
                >
-                  <i className="social__icon fab fa-codepen"></i>
+                  <FaCodepen className="social__icon"></FaCodepen>
                </a>
             </li>
          </ul>
