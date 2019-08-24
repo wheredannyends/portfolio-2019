@@ -9,12 +9,13 @@ const useProjects = () => {
                   slug
                   title
                   subtitle
+                  role
                   stack
                   timeline
                   url
                   image {
                      sharp: childImageSharp {
-                        fluid {
+                        fluid(maxWidth: 500, quality: 100) {
                            ...GatsbyImageSharpFluid
                         }
                      }
@@ -27,14 +28,19 @@ const useProjects = () => {
    `);
 
    return data.projects.entries.map(
-      ({ meta: { slug, title, subtitle, timeline, stack, image }, body }) => ({
+      ({
+         meta: { slug, title, subtitle, role, timeline, stack, image, url },
+         body,
+      }) => ({
          slug,
          title,
          subtitle,
+         role,
          body,
          image,
          timeline,
          stack: stack.split(','),
+         url,
       })
    );
 };

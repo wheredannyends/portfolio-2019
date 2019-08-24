@@ -12,10 +12,7 @@ const Contact = () => {
             together.
          </p>
          <form action="submit" className="contact__form">
-            <label
-               htmlFor="first-name"
-               className="contact__cell contact__cell--first"
-            >
+            <label htmlFor="first-name" className="contact__cell">
                <span className="contact__label">First Name</span>
                <input
                   type="text"
@@ -25,22 +22,7 @@ const Contact = () => {
                   autoFocus
                />
             </label>
-            <label
-               htmlFor="last-name"
-               className="contact__cell contact__cell--last"
-            >
-               <span className="contact__label">Last Name</span>
-               <input
-                  type="text"
-                  id="last-name"
-                  className="contact__input"
-                  required
-               />
-            </label>
-            <label
-               htmlFor="email"
-               className="contact__cell contact__cell--email"
-            >
+            <label htmlFor="email" className="contact__cell">
                <span className="contact__label">Email Address</span>
                <input
                   type="email"
@@ -49,16 +31,14 @@ const Contact = () => {
                   required
                />
             </label>
-            <label
-               htmlFor="message"
-               className="contact__cell contact__cell--message"
-            >
+            <label htmlFor="message" className="contact__cell">
                <span className="contact__label">Message</span>
                <textarea
                   id="message"
                   resize="none"
+                  rows="5"
                   required
-                  className="contact__input contact__input--message"
+                  className="contact__input"
                />
             </label>
             <input

@@ -1,27 +1,42 @@
-import React from 'react';
-import { Link } from 'gatsby';
-import BackgroundImage from 'gatsby-background-image';
+import React, { useRef, useEffect } from 'react';
+import Image from 'gatsby-image';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 const ProjectCard = ({ project }) => {
+   const projectImage = useRef();
+   useEffect(() => {
+      console.log(projectImage.current.getBoundingClientRect());
+   }, []);
    return (
-      <Link
-         to={`/work/${project.slug}`}
-         className={`project-card project-card--${project.slug}`}
-      >
-         <BackgroundImage
-            Tag="div"
-            className="project-card__banner"
-            fluid={project.image.sharp.fluid}
-            fadeIn="soft"
-         ></BackgroundImage>
-         <div className="project-card__label">
-            <h5 className="project-card__title">
-               {project.title}
-               <i className="project-card__arrow far fa-angle-right"></i>
-            </h5>
-            <p className="project-card__subtitle">{project.subtitle}</p>
+      <article className="project-card">
+         <div className="project-card__image" ref={projectImage}>
+            <Image fluid={project.image.sharp.fluid} fadeIn={false}></Image>
          </div>
-      </Link>
+         <div className="project-card__content">
+            <h2 className="project-card__title">{project.title}</h2>
+            <h5 className="project-card__subtitle">{project.subtitle}</h5>
+            <ul className="project-card__info">
+               <li className="project-card__info-item">
+                  <i className="far fa-briefcase project-card__icon-label"></i>
+                  <span className="project-card__info-value">
+                     {project.role}
+                  </span>
+               </li>
+               <li className="project-card__info-item">
+                  <i className="far fa-clock project-card__icon-label"></i>
+                  <span className="project-card__info-value">
+                     {project.timeline}
+                  </span>
+               </li>
+            </ul>
+            <div className="project-card__description">
+               <MDXRenderer>{project.body}</MDXRenderer>
+            </div>
+            <a href={project.url} target="_blank" className="button">
+               View Project
+            </a>
+         </div>
+      </article>
    );
 };
 

@@ -1,3 +1,7 @@
+/*
+
+To be implemented after more content is added.
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
    const result = await graphql(`
       {
@@ -27,3 +31,5 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       });
    });
 };
+
+*/
