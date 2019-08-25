@@ -12,11 +12,11 @@ const Contact = () => {
             together.
          </p>
          <form action="submit" className="contact__form">
-            <label htmlFor="first-name" className="contact__cell">
-               <span className="contact__label">First Name</span>
+            <label htmlFor="full-name" className="contact__cell">
+               <span className="contact__label">Full Name</span>
                <input
                   type="text"
-                  id="first-name"
+                  id="full-name"
                   className="contact__input"
                   required
                   autoFocus

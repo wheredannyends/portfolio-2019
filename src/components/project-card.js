@@ -1,17 +1,42 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { FiBriefcase, FiClock } from 'react-icons/fi';
+import useIntersect from '../hooks/use-observer';
 import Image from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 const ProjectCard = ({ project }) => {
    const projectImage = useRef();
+   const [imgPos, setImgPos] = useState(0);
+
+   const setImagePosition = () => {
+      const imageEl = projectImage.current.getBoundingClientRect();
+      const midOffset =
+         (window.innerHeight / 2 - (imageEl.height / 2 + imageEl.y)) / 4;
+
+      return midOffset.toFixed();
+   };
+
    useEffect(() => {
-      console.log(projectImage.current.getBoundingClientRect());
+      setImgPos(() => setImagePosition());
+
+      document.addEventListener('scroll', () => {
+         setImgPos(() => setImagePosition());
+      });
    }, []);
+
    return (
       <article className="project-card">
-         <div className="project-card__image" ref={projectImage}>
-            <Image fluid={project.image.sharp.fluid} fadeIn={false}></Image>
+         <div
+            className="project-card__image"
+            ref={projectImage}
+            style={{
+               transform: `translateY(${imgPos}px)`,
+            }}
+         >
+            <Image
+               className="project-card__image-component"
+               fluid={project.image.sharp.fluid}
+            ></Image>
          </div>
          <div className="project-card__content">
             <h2 className="project-card__title">{project.title}</h2>

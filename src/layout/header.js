@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'gatsby';
 
 const Header = ({ location }) => {
-   console.log(location);
    return (
       <header className="header">
          <Link to="/">
