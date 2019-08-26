@@ -1,44 +1,48 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiBriefcase, FiClock } from 'react-icons/fi';
-import useIntersect from '../hooks/use-observer';
+import useObserver from '../hooks/use-observer';
 import Image from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-const ProjectCard = ({ project }) => {
-   const projectImage = useRef();
+const ProjectCard = ({ project, scrollPos }) => {
    const [imgPos, setImgPos] = useState(0);
+   const { observerEntry: imageEntry, elRef: imageRef } = useObserver({
+      threshold: 0.8,
+   });
+   const { observerEntry: contentEntry, elRef: contentRef } = useObserver({
+      threshold: 0.8,
+   });
 
    const setImagePosition = () => {
-      const imageEl = projectImage.current.getBoundingClientRect();
+      const imageEl = imageRef.current.getBoundingClientRect();
       const midOffset =
          (window.innerHeight / 2 - (imageEl.height / 2 + imageEl.y)) / 4;
 
-      return midOffset.toFixed();
+      setImgPos(() => midOffset.toFixed());
+      return;
    };
 
    useEffect(() => {
-      setImgPos(() => setImagePosition());
-
-      document.addEventListener('scroll', () => {
-         setImgPos(() => setImagePosition());
-      });
-   }, []);
+      setImagePosition();
+   }, [scrollPos]);
 
    return (
       <article className="project-card">
          <div
             className="project-card__image"
-            ref={projectImage}
+            ref={imageRef}
             style={{
+               opacity: `${imageEntry.isIntersecting ? 1 : 0}`,
                transform: `translateY(${imgPos}px)`,
             }}
          >
             <Image
+               fadeIn={false}
                className="project-card__image-component"
                fluid={project.image.sharp.fluid}
             ></Image>
          </div>
-         <div className="project-card__content">
+         <div className="project-card__content" ref={contentRef}>
             <h2 className="project-card__title">{project.title}</h2>
             <h5 className="project-card__subtitle">{project.subtitle}</h5>
             <ul className="project-card__info">

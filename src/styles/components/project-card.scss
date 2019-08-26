@@ -3,7 +3,8 @@
    grid-template-columns: 1fr 1fr;
    grid-gap: spacing(xxxl);
    align-items: center;
-   min-height: 80vh;
+   min-height: 60vh;
+   margin-bottom: spacing(xxl);
 
    @include screen(sm) {
       grid-template-columns: 1fr;
@@ -17,11 +18,8 @@
       }
    }
 
-   &:not(:last-child) {
-      margin-bottom: spacing(xxxl);
-   }
-
    &__image {
+      transition: opacity 1s;
       @include screen(sm) {
          height: 30rem;
       }

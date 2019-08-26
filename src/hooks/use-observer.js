@@ -1,25 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
-export default ({ root = null, rootMargin, threshold = 0 }) => {
-   const [entry, updateEntry] = useState({});
-   const [node, setNode] = useState(null);
-
-   const observer = useRef(
-      new window.IntersectionObserver(([entry]) => updateEntry(entry), {
-         root,
-         rootMargin,
-         threshold,
-      })
-   );
+const useObserver = options => {
+   const [observerEntry, setEntry] = useState({});
+   const elRef = useRef();
 
    useEffect(() => {
-      const { current: currentObserver } = observer;
-      currentObserver.disconnect();
-
-      if (node) currentObserver.observe(node);
-
-      return () => currentObserver.disconnect();
-   }, [node]);
-
-   return [setNode, entry];
+      const observer = new IntersectionObserver(
+         entries => setEntry(entries[0]),
+         options
+      );
+      observer.observe(elRef.current);
+      return () => observer.disconnect();
+   }, []);
+   return { observerEntry, elRef };
 };
+
+export default useObserver;
