@@ -1,10 +1,10 @@
 import { createContext } from 'react';
 
-export const initialState = {
+const InitialState = {
    count: 0,
 };
 
-export const reducer = (state, action) => {
+const Reducer = (state, action) => {
    switch (action.type) {
       case 'changeTest':
          return {
@@ -15,4 +15,6 @@ export const reducer = (state, action) => {
    }
 };
 
-export const Context = createContext();
+const Context = createContext();
+
+export { InitialState, Reducer, Context };

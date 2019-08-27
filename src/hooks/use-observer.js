@@ -12,7 +12,7 @@ const useObserver = options => {
       observer.observe(elRef.current);
       return () => observer.disconnect();
    }, []);
-   return { observerEntry, elRef };
+   return [observerEntry, elRef];
 };
 
 export default useObserver;

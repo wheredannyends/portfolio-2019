@@ -8,6 +8,8 @@
 
    @include screen(sm) {
       grid-template-columns: 1fr;
+      grid-gap: spacing(sm);
+      margin-bottom: spacing(xxxl);
    }
 
    &:nth-child(even) {
@@ -16,17 +18,33 @@
       @include screen(sm) {
          grid-template-columns: 1fr;
       }
+
+      .project-card__content {
+         transform: translateX(-3rem);
+
+         &.active {
+            transform: translateX(0);
+         }
+      }
    }
 
    &__image {
       transition: opacity 1s;
       @include screen(sm) {
-         height: 30rem;
+         transform: none !important;
       }
    }
 
    &__content {
       direction: ltr;
+      opacity: 0;
+      transform: translateX(3rem);
+      transition: opacity 1s, transform 1s;
+
+      &.active {
+         opacity: 1;
+         transform: translateX(0);
+      }
    }
 
    &__subtitle {

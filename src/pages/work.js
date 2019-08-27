@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import useProjects from '../queries/use-projects';
+import useMobileCheck from '../hooks/use-mobile-check';
 import ProjectCard from '../components/project-card';
 
 const Projects = () => {
    const projects = useProjects();
    const [scrollPos, setScrollPos] = useState(0);
+   const isMobile = useMobileCheck();
+
+   const listener = () => {
+      setScrollPos(() => window.scrollY);
+   };
 
    useEffect(() => {
-      window.addEventListener('scroll', () => {
-         setScrollPos(() => window.scrollY);
-      });
-   }, []);
+      if (!isMobile) {
+         window.addEventListener('scroll', listener, true);
+         return () => {
+            window.removeEventListener('scroll', listener, true);
+         };
+      }
+   }, [isMobile]);
 
    return (
       <section className="outer-wrap work">

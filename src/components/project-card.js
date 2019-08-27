@@ -6,12 +6,8 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 const ProjectCard = ({ project, scrollPos }) => {
    const [imgPos, setImgPos] = useState(0);
-   const { observerEntry: imageEntry, elRef: imageRef } = useObserver({
-      threshold: 0.8,
-   });
-   const { observerEntry: contentEntry, elRef: contentRef } = useObserver({
-      threshold: 0.8,
-   });
+   const [imageEntry, imageRef] = useObserver({ threshold: 0.8 });
+   const [contentEntry, contentRef] = useObserver({ threshold: 0.5 });
 
    const setImagePosition = () => {
       const imageEl = imageRef.current.getBoundingClientRect();
@@ -25,6 +21,8 @@ const ProjectCard = ({ project, scrollPos }) => {
    useEffect(() => {
       setImagePosition();
    }, [scrollPos]);
+
+   useEffect(() => {}, [imageEntry.isIntersecting]);
 
    return (
       <article className="project-card">
@@ -42,7 +40,12 @@ const ProjectCard = ({ project, scrollPos }) => {
                fluid={project.image.sharp.fluid}
             ></Image>
          </div>
-         <div className="project-card__content" ref={contentRef}>
+         <div
+            className={`project-card__content ${
+               contentEntry.isIntersecting ? 'active' : ''
+            }`}
+            ref={contentRef}
+         >
             <h2 className="project-card__title">{project.title}</h2>
             <h5 className="project-card__subtitle">{project.subtitle}</h5>
             <ul className="project-card__info">
@@ -62,7 +65,11 @@ const ProjectCard = ({ project, scrollPos }) => {
             <div className="project-card__description">
                <MDXRenderer>{project.body}</MDXRenderer>
             </div>
-            <a href={project.url} target="_blank" className="button">
+            <a
+               href={project.url}
+               target="_blank"
+               className="button project-card__button"
+            >
                View Project
             </a>
          </div>
