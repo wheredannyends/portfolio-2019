@@ -3,13 +3,14 @@
    grid-template-columns: 1fr 1fr;
    grid-gap: spacing(xxxl);
    align-items: center;
-   min-height: 60vh;
+   min-height: calc(100vh - (#{$header-height} * 2));
    margin-bottom: spacing(xxl);
 
    @include screen(sm) {
       grid-template-columns: 1fr;
-      grid-gap: spacing(sm);
+      grid-gap: spacing(lg);
       margin-bottom: spacing(xxxl);
+      min-height: 0;
    }
 
    &:nth-child(even) {
@@ -22,28 +23,33 @@
       .project-card__content {
          transform: translateX(-3rem);
 
+         @include screen(sm) {
+            transform: translateY(3rem);
+         }
+
          &.active {
-            transform: translateX(0);
+            transform: none;
          }
       }
    }
 
    &__image {
-      transition: opacity 1s;
-      @include screen(sm) {
-         transform: none !important;
-      }
+      transition: opacity 2s;
    }
 
    &__content {
       direction: ltr;
       opacity: 0;
       transform: translateX(3rem);
-      transition: opacity 1s, transform 1s;
+      transition: opacity 2s, transform 2s;
+
+      @include screen(sm) {
+         transform: translateY(3rem);
+      }
 
       &.active {
          opacity: 1;
-         transform: translateX(0);
+         transform: none;
       }
    }
 

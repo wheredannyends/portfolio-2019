@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import useProjects from '../queries/use-projects';
-import useMobileCheck from '../hooks/use-mobile-check';
 import ProjectCard from '../components/project-card';
+import { FiArrowDown } from 'react-icons/fi';
 
 const Projects = () => {
    const projects = useProjects();
    const [scrollPos, setScrollPos] = useState(0);
-   const isMobile = useMobileCheck();
 
    const listener = () => {
       setScrollPos(() => window.scrollY);
    };
 
    useEffect(() => {
-      if (!isMobile) {
-         window.addEventListener('scroll', listener, true);
-         return () => {
-            window.removeEventListener('scroll', listener, true);
-         };
-      }
-   }, [isMobile]);
+      window.addEventListener('scroll', listener, true);
+      return () => {
+         window.removeEventListener('scroll', listener, true);
+      };
+   }, []);
 
    return (
       <section className="outer-wrap work">
@@ -29,10 +26,16 @@ const Projects = () => {
                   key={project.slug}
                   slug={project.slug}
                   project={project}
-                  scrollPos={scrollPos}
                ></ProjectCard>
             ))}
          </ul>
+         <div
+            className={`work__scroll ${scrollPos > 100 &&
+               'work__scroll--hidden'}`}
+         >
+            <p className="work__scroll-text">Scroll</p>
+            <FiArrowDown className="work__scroll-icon"></FiArrowDown>
+         </div>
       </section>
    );
 };

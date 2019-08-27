@@ -3,34 +3,39 @@ import { FiBriefcase, FiClock } from 'react-icons/fi';
 import useObserver from '../hooks/use-observer';
 import Image from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import useMobileCheck from '../hooks/use-mobile-check';
 
-const ProjectCard = ({ project, scrollPos }) => {
+const ProjectCard = ({ project }) => {
    const [imgPos, setImgPos] = useState(0);
-   const [imageEntry, imageRef] = useObserver({ threshold: 0.8 });
-   const [contentEntry, contentRef] = useObserver({ threshold: 0.5 });
+   const [cardEntry, cardRef] = useObserver({ threshold: 0.2 });
+   const isMobile = useMobileCheck();
+
+   useEffect(() => {
+      if (!isMobile && cardEntry.isIntersecting) {
+         console.log('scroll on');
+         window.addEventListener('scroll', setImagePosition, true);
+         return () => {
+            console.log('scroll off');
+            window.removeEventListener('scroll', setImagePosition, true);
+         };
+      }
+      console.log(cardEntry);
+   }, [isMobile, cardEntry.isIntersecting]);
 
    const setImagePosition = () => {
-      const imageEl = imageRef.current.getBoundingClientRect();
+      const imageEl = cardRef.current.getBoundingClientRect();
       const midOffset =
          (window.innerHeight / 2 - (imageEl.height / 2 + imageEl.y)) / 4;
 
       setImgPos(() => midOffset.toFixed());
-      return;
    };
 
-   useEffect(() => {
-      setImagePosition();
-   }, [scrollPos]);
-
-   useEffect(() => {}, [imageEntry.isIntersecting]);
-
    return (
-      <article className="project-card">
+      <article className="project-card" ref={cardRef}>
          <div
             className="project-card__image"
-            ref={imageRef}
             style={{
-               opacity: `${imageEntry.isIntersecting ? 1 : 0}`,
+               opacity: `${cardEntry.isIntersecting ? 1 : 0}`,
                transform: `translateY(${imgPos}px)`,
             }}
          >
@@ -41,10 +46,8 @@ const ProjectCard = ({ project, scrollPos }) => {
             ></Image>
          </div>
          <div
-            className={`project-card__content ${
-               contentEntry.isIntersecting ? 'active' : ''
-            }`}
-            ref={contentRef}
+            className={`project-card__content ${cardEntry.isIntersecting &&
+               'active'}`}
          >
             <h2 className="project-card__title">{project.title}</h2>
             <h5 className="project-card__subtitle">{project.subtitle}</h5>
