@@ -19,8 +19,8 @@ const Projects = () => {
    }, []);
 
    return (
-      <section className="outer-wrap work">
-         <ul className="work__projects">
+      <section className="outer-wrap projects">
+         <ul className="projects__projects">
             {projects.map(project => (
                <ProjectCard
                   key={project.slug}
@@ -30,11 +30,11 @@ const Projects = () => {
             ))}
          </ul>
          <div
-            className={`work__scroll ${scrollPos > 100 &&
-               'work__scroll--hidden'}`}
+            className={`projects__scroll ${scrollPos > 100 &&
+               'projects__scroll--hidden'}`}
          >
-            <p className="work__scroll-text">Scroll</p>
-            <FiArrowDown className="work__scroll-icon"></FiArrowDown>
+            <p className="projects__scroll-text">Scroll</p>
+            <FiArrowDown className="projects__scroll-icon"></FiArrowDown>
          </div>
       </section>
    );

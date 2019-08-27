@@ -26,8 +26,8 @@ const App = () => {
             <Link to="/contact" className="home__button button button--alt">
                Contact Me
             </Link>
-            <Link to="/work" className="home__button button">
-               View Work
+            <Link to="/projects" className="home__button button">
+               View Projects
             </Link>
          </div>
       </section>

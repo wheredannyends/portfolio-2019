@@ -17,14 +17,14 @@ const Header = ({ location }) => {
          </Link>
          <nav className="header__nav">
             <Link
-               to="/work"
+               to="/projects"
                className={`header__nav-link ${
-                  location.indexOf('/work') !== -1
+                  location.indexOf('/projects') !== -1
                      ? 'header__nav-link--active'
                      : ''
                }`}
             >
-               Work
+               Projects
             </Link>
             <Link
                to="/about"
