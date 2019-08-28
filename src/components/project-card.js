@@ -12,14 +12,11 @@ const ProjectCard = ({ project }) => {
 
    useEffect(() => {
       if (!isMobile && cardEntry.isIntersecting) {
-         console.log('scroll on');
          window.addEventListener('scroll', setImagePosition, true);
          return () => {
-            console.log('scroll off');
             window.removeEventListener('scroll', setImagePosition, true);
          };
       }
-      console.log(cardEntry);
    }, [isMobile, cardEntry.isIntersecting]);
 
    const setImagePosition = () => {
@@ -39,11 +36,7 @@ const ProjectCard = ({ project }) => {
                transform: `translateY(${imgPos}px)`,
             }}
          >
-            <Image
-               fadeIn={false}
-               className="project-card__image-component"
-               fluid={project.image.sharp.fluid}
-            ></Image>
+            <Image fadeIn={false} fluid={project.image.sharp.fluid}></Image>
          </div>
          <div
             className={`project-card__content ${cardEntry.isIntersecting &&

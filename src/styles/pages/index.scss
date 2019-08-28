@@ -4,10 +4,11 @@
    align-items: center;
    justify-content: center;
    text-align: center;
+   visibility: hidden;
 
    &__title {
       margin-bottom: spacing(sm);
-      line-height: 1;
+      line-height: 1.2;
 
       span {
          display: block;

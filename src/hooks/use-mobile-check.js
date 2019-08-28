@@ -13,10 +13,8 @@ const useMobileCheck = () => {
 
    useEffect(() => {
       listener();
-      console.log('resize on');
       window.addEventListener('resize', listener, true);
       return () => {
-         console.log('resize off');
          window.removeEventListener('resize', listener, true);
       };
    }, []);
