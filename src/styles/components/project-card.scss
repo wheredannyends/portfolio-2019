@@ -19,38 +19,19 @@
       @include screen(sm) {
          grid-template-columns: 1fr;
       }
-
-      .project-card__content {
-         transform: translateX(-3rem);
-
-         @include screen(sm) {
-            transform: translateY(3rem);
-         }
-
-         &.active {
-            transform: none;
-         }
-      }
    }
 
    &__image {
       transition: opacity 2s;
+
+      @include screen(sm) {
+         transform: none !important;
+      }
    }
 
    &__content {
       direction: ltr;
-      opacity: 0;
-      transform: translateX(3rem);
-      transition: opacity 2s, transform 2s;
-
-      @include screen(sm) {
-         transform: translateY(3rem);
-      }
-
-      &.active {
-         opacity: 1;
-         transform: none;
-      }
+      transition: opacity 1s, transform 1s;
    }
 
    &__subtitle {

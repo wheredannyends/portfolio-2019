@@ -21,11 +21,12 @@ const Projects = () => {
    return (
       <section className="outer-wrap projects">
          <ul className="projects__projects">
-            {projects.map(project => (
+            {projects.map((project, index) => (
                <ProjectCard
                   key={project.slug}
                   slug={project.slug}
                   project={project}
+                  index={index}
                ></ProjectCard>
             ))}
          </ul>

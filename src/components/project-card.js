@@ -3,21 +3,19 @@ import { FiBriefcase, FiClock } from 'react-icons/fi';
 import useObserver from '../hooks/use-observer';
 import Image from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import useMobileCheck from '../hooks/use-mobile-check';
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, index }) => {
    const [imgPos, setImgPos] = useState(0);
-   const [cardEntry, cardRef] = useObserver({ threshold: 0.2 });
-   const isMobile = useMobileCheck();
+   const [cardEntry, cardRef] = useObserver({ threshold: 0.5 });
 
    useEffect(() => {
-      if (!isMobile && cardEntry.isIntersecting) {
+      if (cardEntry.isIntersecting) {
          window.addEventListener('scroll', setImagePosition, true);
          return () => {
             window.removeEventListener('scroll', setImagePosition, true);
          };
       }
-   }, [isMobile, cardEntry.isIntersecting]);
+   }, [cardEntry.isIntersecting]);
 
    const setImagePosition = () => {
       const imageEl = cardRef.current.getBoundingClientRect();
@@ -32,7 +30,7 @@ const ProjectCard = ({ project }) => {
          <div
             className="project-card__image"
             style={{
-               opacity: `${cardEntry.isIntersecting ? 1 : 0}`,
+               opacity: cardEntry.isIntersecting ? 1 : 0,
                transform: `translateY(${imgPos}px)`,
             }}
          >
@@ -41,6 +39,12 @@ const ProjectCard = ({ project }) => {
          <div
             className={`project-card__content ${cardEntry.isIntersecting &&
                'active'}`}
+            style={{
+               opacity: cardEntry.isIntersecting ? 1 : 0,
+               transform: cardEntry.isIntersecting
+                  ? 'none'
+                  : `translateX(${index % 2 === 0 ? '4rem' : '-4rem'})`,
+            }}
          >
             <h2 className="project-card__title">{project.title}</h2>
             <h5 className="project-card__subtitle">{project.subtitle}</h5>
