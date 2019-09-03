@@ -2,9 +2,8 @@
    cursor: pointer;
    padding: spacing(sm) spacing(md);
    display: inline-flex;
-   justify-content: space-between;
+   justify-content: center;
    align-items: center;
-   text-align: center;
    border: 2px solid transparent;
    border-radius: $border-radius;
    background-color: $color-primary;
@@ -14,6 +13,8 @@
    box-shadow: shadow(3);
    font-weight: $font-bold;
    outline: none;
+   font-size: 1.8rem;
+   min-width: 20rem;
 
    &:hover {
       background-color: $color-primary-dark;

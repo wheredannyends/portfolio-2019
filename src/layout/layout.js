@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 import Metadata from '../queries/use-sitemetadata';
 import Header from './header';

@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { FaLinkedinIn, FaGithub, FaTwitter, FaCodepen } from 'react-icons/fa';
+import { TimelineLite, Power3 } from 'gsap';
 
 const Footer = () => {
+   let footerRef = useRef(null);
+
+   useEffect(() => {
+      let TL = new TimelineLite();
+      TL.to(footerRef, 0, { css: { visibility: 'visible' } }).from(
+         footerRef,
+         3,
+         {
+            opacity: 0,
+            y: 50,
+            ease: Power3.easeOut,
+         },
+         1.5
+      );
+      return () => {
+         TL.kill();
+      };
+   }, []);
+
    return (
-      <footer className="footer">
+      <footer className="footer" ref={el => (footerRef = el)}>
          <ul className="social">
             <li className="social__item">
                <a

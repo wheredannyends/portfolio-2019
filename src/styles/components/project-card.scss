@@ -21,6 +21,10 @@
       }
    }
 
+   &__image-wrap {
+      visibility: hidden;
+   }
+
    &__image {
       transition: opacity 2s;
 
@@ -32,6 +36,7 @@
    &__content {
       direction: ltr;
       transition: opacity 1s, transform 1s;
+      visibility: hidden;
    }
 
    &__subtitle {

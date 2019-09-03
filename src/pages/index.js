@@ -1,90 +1,47 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { Back, TimelineLite } from 'gsap';
-let TL = new TimelineLite();
 
 const App = () => {
-   let home = useRef(null);
-   let titleRef1 = useRef(null);
-   let titleRef2 = useRef(null);
-   let bodyRef1 = useRef(null);
-   let bodyRef2 = useRef(null);
+   let homeRef = useRef(null);
+   let titleRef = useRef(null);
+   let bodyRef = useRef(null);
    let buttonsRef = useRef(null);
 
    useEffect(() => {
-      TL.to(home, 0, { css: { visibility: 'visible' } })
-         .from(titleRef1, 1, {
-            opacity: 0,
-            y: 60,
-            ease: Back.easeOut,
-         })
-         .from(
-            titleRef2,
-            1,
+      let TL = new TimelineLite();
+
+      const animation = {
+         settings: [
+            2,
             {
                opacity: 0,
-               y: 60,
+               y: 50,
+               scale: 0.9,
                ease: Back.easeOut,
             },
-            '-=0.8'
-         )
-         .from(
-            bodyRef1,
-            1,
-            {
-               opacity: 0,
-               y: 40,
-               ease: Back.easeOut,
-            },
-            '-=0.8'
-         )
-         .from(
-            bodyRef2,
-            1,
-            {
-               opacity: 0,
-               y: 40,
-               ease: Back.easeOut,
-            },
-            '-=0.8'
-         )
-         .from(
-            buttonsRef,
-            1,
-            {
-               opacity: 0,
-               y: 40,
-               ease: Back.easeOut,
-            },
-            '-=0.6'
-         );
+         ],
+         delay: '-=1.8',
+      };
+
+      TL.to(homeRef, 0, { css: { visibility: 'visible' } })
+         .from(titleRef, ...animation.settings)
+         .from(bodyRef, ...animation.settings, animation.delay)
+         .from(buttonsRef, ...animation.settings, animation.delay);
       return () => {
          TL.kill();
       };
    }, []);
 
-   // useEffect(() => {
-   //    if () {
-   //       window.addEventListener('mousemove', setImagePosition, true);
-   //       return () => {
-   //          window.removeEventListener('mousemove', setImagePosition, true);
-   //       };
-   //    }
-   // }, []);
-
    return (
-      <section className="home" ref={el => (home = el)}>
-         <h1 className="home__title">
-            <span ref={el => (titleRef1 = el)}>
-               Hi. My name is Danny Burton.{' '}
-            </span>
-            <span ref={el => (titleRef2 = el)}>I'm a Front End Developer.</span>
+      <section className="home" ref={el => (homeRef = el)}>
+         <h1 className="home__title" ref={el => (titleRef = el)}>
+            <span>Hi. My name is Danny Burton. </span>
+            <span>I'm a Front End Developer.</span>
          </h1>
-         <p className="home__body">
-            <span ref={el => (bodyRef1 = el)}>
-               I develop user interfaces using web technologies.{' '}
-            </span>
-            <span ref={el => (bodyRef2 = el)}>
+         <p className="home__body" ref={el => (bodyRef = el)}>
+            <span>I develop user interfaces using web technologies. </span>
+            <span>
                Currently a Senior Front-End Developer at{' '}
                <a
                   href="//www.convertus.com"

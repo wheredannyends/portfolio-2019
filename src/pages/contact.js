@@ -1,28 +1,72 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import { Back, TimelineLite } from 'gsap';
 
 const Contact = () => {
+   let contactWrap = useRef(null);
+   let titleRef = useRef(null);
+   let bodyRef = useRef(null);
+   let nameRef = useRef(null);
+   let emailRef = useRef(null);
+   let messageRef = useRef(null);
+   let buttonRef = useRef(null);
+
+   useEffect(() => {
+      let TL = new TimelineLite();
+
+      const animation = {
+         settings: [
+            2,
+            {
+               opacity: 0,
+               y: 50,
+               scale: 1.1,
+               ease: Back.easeOut,
+            },
+         ],
+         delay: '-=1.8',
+      };
+
+      TL.to(contactWrap, 0, { css: { visibility: 'visible' } })
+         .from(titleRef, ...animation.settings)
+         .from(bodyRef, ...animation.settings, animation.delay)
+         .from(nameRef, ...animation.settings, animation.delay)
+         .from(emailRef, ...animation.settings, animation.delay)
+         .from(messageRef, ...animation.settings, animation.delay)
+         .from(buttonRef, ...animation.settings, animation.delay);
+      return () => {
+         TL.kill();
+      };
+   }, []);
+
    return (
-      <div className="inner-wrap contact">
-         <h2>Want to get in touch?</h2>
-         <p className="contact__body-text">
+      <div className="inner-wrap contact" ref={el => (contactWrap = el)}>
+         <h2 ref={el => (titleRef = el)}>Want to get in touch?</h2>
+         <p className="contact__body-text" ref={el => (bodyRef = el)}>
             Have an exciting project that you need my help with? Have a bug that
-            you need to be squashed? Want to order me pizza and donuts? Whatever
-            it may be, I can be reached all over the internet, or by good ol'
+            you need squashed? Want to order me pizza and donuts? Whatever it
+            may be, I can be reached all over the internet, or by good ol'
             fashioned email. Shoot me a message and let's build something great
             together.
          </p>
          <form action="submit" className="contact__form">
-            <label htmlFor="full-name" className="contact__cell">
+            <label
+               htmlFor="full-name"
+               className="contact__cell"
+               ref={el => (nameRef = el)}
+            >
                <span className="contact__label">Full Name</span>
                <input
                   type="text"
                   id="full-name"
                   className="contact__input"
                   required
-                  autoFocus
                />
             </label>
-            <label htmlFor="email" className="contact__cell">
+            <label
+               htmlFor="email"
+               className="contact__cell"
+               ref={el => (emailRef = el)}
+            >
                <span className="contact__label">Email Address</span>
                <input
                   type="email"
@@ -31,7 +75,11 @@ const Contact = () => {
                   required
                />
             </label>
-            <label htmlFor="message" className="contact__cell">
+            <label
+               htmlFor="message"
+               className="contact__cell"
+               ref={el => (messageRef = el)}
+            >
                <span className="contact__label">Message</span>
                <textarea
                   id="message"
@@ -41,11 +89,13 @@ const Contact = () => {
                   className="contact__input"
                />
             </label>
-            <input
+            <button
                type="submit"
                className="button contact__submit"
-               value="Send"
-            />
+               ref={el => (buttonRef = el)}
+            >
+               Send
+            </button>
          </form>
       </div>
    );

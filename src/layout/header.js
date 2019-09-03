@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'gatsby';
+import { TimelineLite, Power3 } from 'gsap';
 
 const Header = ({ location }) => {
+   let headerRef = useRef(null);
+
+   useEffect(() => {
+      let TL = new TimelineLite();
+      TL.to(headerRef, 0, { css: { visibility: 'visible' } }).from(
+         headerRef,
+         3,
+         {
+            opacity: 0,
+            y: -50,
+            ease: Power3.easeOut,
+         },
+         1.5
+      );
+      return () => {
+         TL.kill();
+      };
+   }, []);
+
    return (
-      <header className="header">
+      <header className="header" ref={el => (headerRef = el)}>
          <Link to="/">
             <svg
                className="header__logo"

@@ -1,8 +1,9 @@
 .contact {
+   visibility: hidden;
 
    &__body-text {
       color: $color-grey-lighter;
-      margin: spacing(sm) 0 spacing(xxl) 0;
+      margin: spacing(sm) 0 spacing(xl) 0;
    }
 
    &__form {
@@ -45,5 +46,9 @@
          border-color: $color-secondary;
          box-shadow: shadow(1);
       }
+   }
+
+   &__submit {
+      margin-top: spacing(sm);
    }
 }
