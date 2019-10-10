@@ -2,13 +2,15 @@ import React, { useRef, useEffect } from 'react';
 import { Back, TimelineLite } from 'gsap';
 
 const Contact = () => {
-   let contactWrap = useRef(null);
-   let titleRef = useRef(null);
-   let bodyRef = useRef(null);
-   let nameRef = useRef(null);
-   let emailRef = useRef(null);
-   let messageRef = useRef(null);
-   let buttonRef = useRef(null);
+   let [
+      contactWrap,
+      titleRef,
+      bodyRef,
+      nameRef,
+      emailRef,
+      messageRef,
+      buttonRef,
+   ] = useRef(null);
 
    useEffect(() => {
       let TL = new TimelineLite();

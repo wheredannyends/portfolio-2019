@@ -9,13 +9,15 @@ const ProjectCard = ({ project, index }) => {
    const [imgPos, setImgPos] = useState(0);
    const [cardEntry, cardRef] = useObserver({ threshold: 0.3 });
 
-   let imageWrapRef = useRef(null);
-   let contentWrapRef = useRef(null);
-   let titleRef = useRef(null);
-   let subtitleRef = useRef(null);
-   let listRef = useRef(null);
-   let descriptionRef = useRef(null);
-   let buttonRef = useRef(null);
+   let [
+      imageWrapRef,
+      contentWrapRef,
+      titleRef,
+      subtitleRef,
+      listRef,
+      descriptionRef,
+      buttonRef,
+   ] = useRef(null);
 
    useEffect(() => {
       let TL = new TimelineLite();

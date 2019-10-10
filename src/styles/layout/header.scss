@@ -5,15 +5,18 @@
    justify-content: space-between;
    visibility: hidden;
 
+   &__logo-wrap {
+
+      &:hover > svg {
+         fill: $color-primary-light;
+         animation: logo-hover 0.5s;
+      }
+   }
+
    &__logo {
       height: 6rem;
       fill: $color-white;
       transition: fill $transition;
-
-      &:hover {
-         fill: $color-primary-light;
-         animation: logo-hover 0.5s;
-      }
    }
 
    &__nav {

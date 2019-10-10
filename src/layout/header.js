@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
-import { Link } from 'gatsby';
-import { TimelineLite, Power3 } from 'gsap';
+import { TweenLite, TimelineLite, Power3 } from 'gsap';
+import TransitionLink from 'gatsby-plugin-transition-link';
 
 const Header = ({ location }) => {
    let headerRef = useRef(null);
@@ -22,9 +22,33 @@ const Header = ({ location }) => {
       };
    }, []);
 
+   const anim = {
+      exit: {
+         trigger: ({ node }) =>
+            TweenLite.to(node, 1.5, {
+               opacity: 0,
+               y: 50,
+               ease: Back.easeIn,
+            }),
+         length: 1.5,
+      },
+      entry: {
+         trigger: ({ node }) =>
+            TweenLite.from(node, 1.5, {
+               opacity: 0,
+            }),
+         delay: 1.5,
+      },
+   };
+
    return (
       <header className="header" ref={el => (headerRef = el)}>
-         <Link to="/">
+         <TransitionLink
+            to="/"
+            exit={anim.exit}
+            entry={anim.entry}
+            className="header__logo-wrap"
+         >
             <svg
                className="header__logo"
                xmlns="http://www.w3.org/2000/svg"
@@ -34,10 +58,12 @@ const Header = ({ location }) => {
                <path d="M95.7,241.52l37-62.58,22.9,19.77,27-23.33,27,23.33,27-23.33,27,23.33,24.13-20.83,49.6,83.92L390,230.21l8.34,5A190.88,190.88,0,0,0,400,210c0-104.77-85.23-190-190-190S20,105.23,20,210a190.42,190.42,0,0,0,2.82,32.68L60,220.21ZM163.91,126.4h93.34L284,171.48l-20.27,17.37-27-23.35-27,23.35-27-23.35-27,23.43-19-16.38Z" />
                <path d="M390,241.88l-66.65,40.06-33.42-20.19-56.57,34.06-73.19-44.11-33.42,20.13-66.65-40L7,263.91C30.8,353.77,112.66,420,210,420c99.88,0,183.46-69.73,204.75-163.16Z" />
             </svg>
-         </Link>
+         </TransitionLink>
          <nav className="header__nav">
-            <Link
+            <TransitionLink
                to="/projects"
+               exit={anim.exit}
+               entry={anim.entry}
                className={`header__nav-link ${
                   location.indexOf('/projects') !== -1
                      ? 'header__nav-link--active'
@@ -45,23 +71,27 @@ const Header = ({ location }) => {
                }`}
             >
                Projects
-            </Link>
-            <Link
+            </TransitionLink>
+            <TransitionLink
                to="/about"
+               exit={anim.exit}
+               entry={anim.entry}
                className={`header__nav-link ${
                   location === '/about' ? 'header__nav-link--active' : ''
                }`}
             >
                About
-            </Link>
-            <Link
+            </TransitionLink>
+            <TransitionLink
                to="/contact"
+               exit={anim.exit}
+               entry={anim.entry}
                className={`header__nav-link ${
                   location === '/contact' ? 'header__nav-link--active' : ''
                }`}
             >
                Contact
-            </Link>
+            </TransitionLink>
          </nav>
       </header>
    );

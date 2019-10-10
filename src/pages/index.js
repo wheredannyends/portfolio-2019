@@ -1,12 +1,9 @@
 import React, { useRef, useEffect } from 'react';
-import { Link } from 'gatsby';
-import { Back, TimelineLite } from 'gsap';
+import { TimelineLite, Back, Power3 } from 'gsap';
+import TransitionLink from 'gatsby-plugin-transition-link';
 
 const App = () => {
-   let homeRef = useRef(null);
-   let titleRef = useRef(null);
-   let bodyRef = useRef(null);
-   let buttonsRef = useRef(null);
+   let [homeRef, titleRef, bodyRef, buttonsRef] = useRef(null);
 
    useEffect(() => {
       let TL = new TimelineLite();
@@ -33,6 +30,25 @@ const App = () => {
       };
    }, []);
 
+   const anim = {
+      exit: {
+         trigger: ({ node }) =>
+            TweenLite.to(node, 1.5, {
+               opacity: 0,
+               y: 50,
+               ease: Back.easeIn,
+            }),
+         length: 1.5,
+      },
+      entry: {
+         trigger: ({ node }) =>
+            TweenLite.from(node, 1.5, {
+               opacity: 0,
+            }),
+         delay: 1.5,
+      },
+   };
+
    return (
       <section className="home" ref={el => (homeRef = el)}>
          <h1 className="home__title" ref={el => (titleRef = el)}>
@@ -54,12 +70,22 @@ const App = () => {
             </span>
          </p>
          <div className="home__button-area" ref={el => (buttonsRef = el)}>
-            <Link to="/contact" className="home__button button button--alt">
+            <TransitionLink
+               to="/contact"
+               exit={anim.exit}
+               entry={anim.entry}
+               className="home__button button button--alt"
+            >
                Contact Me
-            </Link>
-            <Link to="/projects" className="home__button button">
+            </TransitionLink>
+            <TransitionLink
+               to="/projects"
+               exit={anim.exit}
+               entry={anim.entry}
+               className="home__button button"
+            >
                View Projects
-            </Link>
+            </TransitionLink>
          </div>
       </section>
    );
