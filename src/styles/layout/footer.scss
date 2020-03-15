@@ -1,0 +1,45 @@
+.footer {
+   height: $header-height;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   visibility: hidden;
+
+   &__link {
+      font-style: italic;
+   }
+
+   .social {
+      list-style-type: none;
+
+      &__item {
+         display: inline;
+
+         &:hover {
+
+            .social__icon {
+               color: $color-primary-light;
+               transform: scale(1.2);
+            }
+         }
+
+         &:nth-child(even):hover {
+
+            .social__icon {
+               color: $color-secondary-light;
+            }
+         }
+      }
+
+      &__link {
+         padding: spacing(xs);
+      }
+
+      &__icon {
+         font-weight: $font-light;
+         font-size: 2.2rem;
+         color: $color-white;
+         transition: color $transition, transform $transition;
+      }
+   }
+}

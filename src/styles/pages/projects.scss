@@ -1,0 +1,64 @@
+.projects {
+   position: relative;
+
+   &__scroll {
+      position: fixed;
+      bottom: spacing(xl);
+      left: 0;
+      right: 0;
+      text-align: center;
+      pointer-events: none;
+      transition: opacity $transition, transform $transition;
+      color: $color-grey-mid;
+      animation: scroll 4s $ease infinite;
+
+      &--hidden {
+         opacity: 0;
+      }
+
+      @include screen(sm) {
+         display: none;
+      }
+   }
+
+   &__scroll-text {
+      margin-bottom: spacing(xxs);
+      font-style: italic;
+      font-weight: $font-bold;
+   }
+
+   &__scroll-icon {
+      font-size: 2.4rem;
+      animation: scroll-icon 3s $ease infinite;
+   }
+
+   @keyframes scroll {
+
+      50% {
+         transform: translateY(1.2rem);
+      }
+   }
+
+   @keyframes scroll-icon {
+
+      30% {
+         transform: translateY(0);
+         opacity: 1;
+      }
+
+      40% {
+         transform: translateY(10px);
+         opacity: 0;
+      }
+
+      50% {
+         transform: translateY(-10px);
+         opacity: 0;
+      }
+
+      60% {
+         transform: translateY(0);
+         opacity: 1;
+      }
+   }
+}

@@ -1,0 +1,23 @@
+// Vendor
+@import './vendor/reset';
+
+// Core
+@import './core/variables';
+@import './core/functions';
+@import './core/mixins';
+@import './core/typography';
+@import './core/base';
+
+// Global Components
+@import './components/button';
+@import './components/project-card';
+
+// Layout
+@import './layout/background';
+@import './layout/header';
+@import './layout/footer';
+
+// Pages
+@import './pages/index';
+@import './pages/projects';
+@import './pages/contact';

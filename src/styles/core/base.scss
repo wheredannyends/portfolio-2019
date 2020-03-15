@@ -1,0 +1,115 @@
+*,
+*::after,
+*::before {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+html {
+   font-size: 62.5%;
+
+   @include screen(md) {
+      font-size: 59.25%;
+   }
+
+   @include screen(sm) {
+      font-size: 56%;
+   }
+
+   @include screen(xs) {
+      font-size: 52.75%;
+   }
+
+   @include screen(xxs) {
+      font-size: 50%;
+   }
+}
+
+body {
+   font-size: 1.6rem;
+   color: $color-white;
+   background-color: $color-black;
+   overflow-y: scroll;
+   overflow-x: hidden;
+}
+
+main {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   padding: spacing(md) 0;
+}
+
+.page-wrap {
+   @import '../layout/background';
+   background-color: $color-black;
+   background-image: $page-background;
+   background-attachment: fixed;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   min-height: 100vh;
+   padding: 0 spacing(lg);
+
+   @include screen(sm) {
+      padding: 0 spacing(sm);
+   }
+}
+
+.outer-wrap {
+   max-width: 120rem;
+   width: 100%;
+   margin: 0 auto;
+}
+
+.inner-wrap {
+   max-width: 80rem;
+   width: 100%;
+   margin: 0 auto;
+}
+
+.tl-edges {
+   overflow: visible !important;
+}
+
+img {
+   max-width: 100%;
+   vertical-align: bottom;
+}
+
+a {
+   color: $color-white;
+   text-decoration: none;
+   transition: color $transition;
+   font-weight: $font-bold;
+
+   &:focus,
+   &:hover,
+   &:active {
+      outline: 0;
+   }
+
+   &:hover {
+      color: $color-primary;
+   }
+}
+
+::selection {
+   background: $color-grey-darker;
+   color: $color-white;
+   text-shadow: none;
+}
+
+::-webkit-selection {
+   background: $color-grey-darker;
+   color: $color-white;
+   text-shadow: none;
+}
+
+::-moz-selection {
+   background: $color-grey-darker;
+   color: $color-white;
+   text-shadow: none;
+}

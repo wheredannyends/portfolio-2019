@@ -1,0 +1,71 @@
+.project-card {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-gap: spacing(xxxl);
+   align-items: center;
+   min-height: calc(100vh - (#{$header-height} * 2));
+   margin-bottom: spacing(xxl);
+
+   @include screen(sm) {
+      grid-template-columns: 1fr;
+      grid-gap: spacing(lg);
+      margin-bottom: spacing(xxxl);
+      min-height: 0;
+   }
+
+   &:nth-child(even) {
+      direction: rtl;
+
+      @include screen(sm) {
+         grid-template-columns: 1fr;
+      }
+   }
+
+   &__image-wrap {
+      visibility: hidden;
+   }
+
+   &__image {
+      transition: opacity 2s;
+
+      @include screen(sm) {
+         transform: none !important;
+      }
+   }
+
+   &__content {
+      direction: ltr;
+      transition: opacity 1s, transform 1s;
+      visibility: hidden;
+   }
+
+   &__subtitle {
+      font-weight: $font-light;
+      color: $color-grey-light;
+   }
+
+   &__info {
+      line-height: 1.6;
+      list-style: none;
+      margin: spacing(sm) 0 spacing(lg);
+   }
+
+   &__info-item {
+      display: flex;
+      align-items: center;
+      width: max-content;
+   }
+
+   &__icon-label {
+      margin-right: spacing(xs);
+      color: rgba($color-secondary, 0.5);
+   }
+
+   &__description {
+      margin-bottom: spacing(lg);
+
+      p {
+         margin-bottom: spacing(sm);
+      }
+   }
+}

@@ -1,0 +1,89 @@
+.header {
+   height: $header-height;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   visibility: hidden;
+
+   &__logo-wrap {
+
+      &:hover > svg {
+         fill: $color-primary-light;
+         animation: logo-hover 0.5s;
+      }
+   }
+
+   &__logo {
+      height: 6rem;
+      fill: $color-white;
+      transition: fill $transition;
+   }
+
+   &__nav {
+      display: flex;
+   }
+
+   &__nav-link {
+      position: relative;
+      font-size: 1.8rem;
+      padding: spacing(xs) spacing(xxxs);
+
+      &::after {
+         content: '';
+         display: block;
+         position: absolute;
+         bottom: 0;
+         left: 0;
+         width: 100%;
+         height: 2px;
+         background-color: $color-primary-light;
+         transform: translateY(1rem);
+         opacity: 0;
+         transform-origin: left;
+         transition: transform $transition $ease, opacity $transition $ease;
+      }
+
+      &:nth-child(even)::after {
+         background-color: $color-secondary-light;
+      }
+
+      &:not(:last-child) {
+         margin-right: spacing(md);
+      }
+
+      &:hover {
+         color: $color-white;
+
+         &::after {
+            transform: translateY(0);
+            opacity: 1;
+         }
+      }
+
+      &--active::after,
+      &--active:nth-child(even)::after {
+         transform: translateY(0);
+         opacity: 1;
+         background-color: $color-grey-light;
+      }
+   }
+
+   @keyframes logo-hover {
+
+      20% {
+         transform: rotate(-30deg) scale(0.9);
+      }
+
+      30% {
+         transform: rotate(-30deg) scale(0.9);
+      }
+
+      50% {
+         transform: rotate(-30deg) scale(0.9);
+      }
+
+      70% {
+         transform: rotate(15deg) scale(1.1);
+      }
+   }
+}
