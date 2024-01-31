@@ -107,7 +107,7 @@ const App = () => {
                entry={anim.entry}
                className="button button--alt"
             >
-               More About Me
+               Get In Touch
             </TransitionLink>
 
             <TransitionLink

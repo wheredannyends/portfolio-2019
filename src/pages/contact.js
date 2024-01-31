@@ -89,7 +89,6 @@ const Contact = () => {
                <span className="contact__label">Message</span>
                <textarea
                   id="message"
-                  resize="none"
                   rows="5"
                   required
                   className="contact__input"

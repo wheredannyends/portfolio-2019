@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { TweenLite, TimelineLite, Power3 } from 'gsap';
 import TransitionLink from 'gatsby-plugin-transition-link';
+import cn from 'classnames';
 
 const Header = ({ location }) => {
    let headerRef = useRef(null);
@@ -43,6 +44,8 @@ const Header = ({ location }) => {
       },
    };
 
+   console.log(location);
+
    return (
       <header className="header" ref={el => (headerRef = el)}>
          <TransitionLink
@@ -67,11 +70,9 @@ const Header = ({ location }) => {
                to="/about"
                exit={anim.exit}
                entry={anim.entry}
-               className={`header__nav-link ${
-                  location.indexOf('/about') !== -1
-                     ? 'header__nav-link--active'
-                     : ''
-               }`}
+               className={cn('header__nav-link', {
+                  'header__nav-link--active': location.includes('about'),
+               })}
             >
                About
             </TransitionLink>
@@ -80,11 +81,9 @@ const Header = ({ location }) => {
                to="/projects"
                exit={anim.exit}
                entry={anim.entry}
-               className={`header__nav-link ${
-                  location.indexOf('/projects') !== -1
-                     ? 'header__nav-link--active'
-                     : ''
-               }`}
+               className={cn('header__nav-link', {
+                  'header__nav-link--active': location.includes('projects'),
+               })}
             >
                Projects
             </TransitionLink>
@@ -93,9 +92,9 @@ const Header = ({ location }) => {
                to="/contact"
                exit={anim.exit}
                entry={anim.entry}
-               className={`header__nav-link ${
-                  location === '/contact' ? 'header__nav-link--active' : ''
-               }`}
+               className={cn('header__nav-link', {
+                  'header__nav-link--active': location.includes('contact'),
+               })}
             >
                Contact
             </TransitionLink>

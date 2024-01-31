@@ -4,22 +4,18 @@ import TransitionLink from 'gatsby-plugin-transition-link';
 import { FiFileText } from 'react-icons/fi';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { graphql, useStaticQuery } from 'gatsby';
-import Image from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const App = () => {
    let [aboutRef, imageRef, bodyRef, buttonsRef] = useRef(null);
 
-   const data = useStaticQuery(graphql`
-      {
-         file(sourceInstanceName: { eq: "images" }, name: { eq: "danny" }) {
-            childImageSharp {
-               fluid(maxWidth: 500, quality: 100) {
-                  ...GatsbyImageSharpFluid
-               }
-            }
-         }
-      }
-   `);
+   const data = useStaticQuery(graphql`{
+  file(sourceInstanceName: {eq: "images"}, name: {eq: "danny"}) {
+    childImageSharp {
+      gatsbyImageData(width: 500, quality: 100, layout: CONSTRAINED)
+    }
+  }
+}`);
 
    useEffect(() => {
       const TL = new TimelineLite();
@@ -69,7 +65,7 @@ const App = () => {
       <section className="about container" ref={el => (aboutRef = el)}>
          <div className="about__sidebar">
             <figure className="about__image" ref={el => (imageRef = el)}>
-               <Image fluid={data.file.childImageSharp.fluid} />
+               <GatsbyImage image={data.file.childImageSharp.gatsbyImageData} />
             </figure>
 
             <div className="about__button-area" ref={el => (buttonsRef = el)}>
