@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { Back, TimelineLite } from 'gsap';
+import cn from 'classnames';
 
 const Contact = () => {
    let [
@@ -11,6 +12,12 @@ const Contact = () => {
       messageRef,
       buttonRef,
    ] = useRef(null);
+
+   const [name, setName] = useState('');
+   const [email, setEmail] = useState('');
+   const [message, setMessage] = useState('');
+   const [sending, setSending] = useState(false);
+   const [submitMessage, setSubmitMessage] = useState('');
 
    useEffect(() => {
       let TL = new TimelineLite();
@@ -40,6 +47,53 @@ const Contact = () => {
       };
    }, []);
 
+   const encode = useCallback(data => {
+      return Object.keys(data)
+         .map(
+            key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+         )
+         .join('&');
+   }, []);
+
+   const handleSubmit = useCallback(
+      async event => {
+         event.preventDefault();
+
+         try {
+            setSending(true);
+
+            const response = await fetch('/', {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+               body: encode({
+                  'form-name': 'contact',
+                  name,
+                  email,
+                  message,
+               }),
+            });
+
+            if (response.ok) {
+               setSubmitMessage(
+                  "Message received! I'll get back to you as soon as I can."
+               );
+               setName('');
+               setEmail('');
+               setMessage('');
+            } else {
+               setSubmitMessage(
+                  'Oops! Something went wrong. Please try again.'
+               );
+            }
+         } catch (error) {
+            setSubmitMessage('Oops! Something went wrong. Please try again.');
+         } finally {
+            setSending(false);
+         }
+      },
+      [name, email, message]
+   );
+
    return (
       <div
          className="contact container container--sm"
@@ -54,7 +108,13 @@ const Contact = () => {
             message and let's build something great together.
          </p>
 
-         <form action="submit" className="contact__form" data-netlify="true">
+         <form
+            action="submit"
+            onSubmit={handleSubmit}
+            className="contact__form"
+            method="post"
+            data-netlify="true"
+         >
             <label
                htmlFor="full-name"
                className="contact__cell"
@@ -62,12 +122,16 @@ const Contact = () => {
             >
                <span className="contact__label">Full Name</span>
                <input
+                  name="name"
                   type="text"
                   id="full-name"
                   className="contact__input"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
                   required
                />
             </label>
+
             <label
                htmlFor="email"
                className="contact__cell"
@@ -75,12 +139,16 @@ const Contact = () => {
             >
                <span className="contact__label">Email Address</span>
                <input
+                  name="email"
                   type="email"
                   id="email"
                   className="contact__input"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                   required
                />
             </label>
+
             <label
                htmlFor="message"
                className="contact__cell"
@@ -88,19 +156,29 @@ const Contact = () => {
             >
                <span className="contact__label">Message</span>
                <textarea
+                  name="message"
                   id="message"
                   rows="5"
+                  value={message}
+                  onChange={e => setMessage(e.target.value)}
                   required
                   className="contact__input"
                />
             </label>
+
             <button
                type="submit"
-               className="button contact__submit"
+               className={cn('button contact__submit', {
+                  'button--loading': sending,
+               })}
                ref={el => (buttonRef = el)}
             >
                Send
             </button>
+
+            {submitMessage && (
+               <p className="contact__submit-message">{submitMessage}</p>
+            )}
          </form>
       </div>
    );
