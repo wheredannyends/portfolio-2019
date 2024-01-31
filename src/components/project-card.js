@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Back, TimelineLite } from 'gsap';
 import { FiBriefcase, FiClock } from 'react-icons/fi';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
-import Image from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import useObserver from '../hooks/use-observer';
 
-const ProjectCard = ({ project, index }) => {
+const ProjectCard = ({ project, index, children }) => {
    const [imgPos, setImgPos] = useState(0);
    const [cardEntry, cardRef] = useObserver({ threshold: 0.3 });
 
@@ -72,6 +71,8 @@ const ProjectCard = ({ project, index }) => {
       }
    }, [cardEntry.isIntersecting]);
 
+   console.log(project);
+
    return (
       <article className="project-card" ref={cardRef}>
          <div
@@ -85,7 +86,10 @@ const ProjectCard = ({ project, index }) => {
                   transform: `translateY(${imgPos}px)`,
                }}
             >
-               <Image fadeIn={false} fluid={project.image.sharp.fluid}></Image>
+               <GatsbyImage
+                  image={project.image.childImageSharp.gatsbyImageData}
+                  fadeIn={false}
+               />
             </div>
          </div>
 
@@ -137,12 +141,12 @@ const ProjectCard = ({ project, index }) => {
                </li>
             </ul>
 
-            <div
+            <p
                className="project-card__description"
                ref={el => (descriptionRef = el)}
             >
-               <MDXRenderer>{project.body}</MDXRenderer>
-            </div>
+               {project.body}
+            </p>
 
             {project.url && (
                <a
