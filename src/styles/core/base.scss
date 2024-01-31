@@ -58,16 +58,14 @@ main {
    }
 }
 
-.outer-wrap {
+.container {
    max-width: 120rem;
    width: 100%;
    margin: 0 auto;
-}
 
-.inner-wrap {
-   max-width: 80rem;
-   width: 100%;
-   margin: 0 auto;
+   &--sm {
+      max-width: 80rem;
+   }
 }
 
 .tl-edges {
@@ -84,6 +82,7 @@ a {
    text-decoration: none;
    transition: color $transition;
    font-weight: $font-bold;
+   cursor: pointer;
 
    &:focus,
    &:hover,
@@ -113,3 +112,4 @@ a {
    color: $color-white;
    text-shadow: none;
 }
+

@@ -17,6 +17,13 @@ module.exports = {
          },
       },
       {
+         resolve: 'gatsby-source-filesystem',
+         options: {
+            name: 'images',
+            path: 'src/assets/images',
+         },
+      },
+      {
          resolve: 'gatsby-plugin-transition-link',
          options: {
             layout: require.resolve('./src/layout/layout.js'),
@@ -24,3 +31,4 @@ module.exports = {
       },
    ],
 };
+

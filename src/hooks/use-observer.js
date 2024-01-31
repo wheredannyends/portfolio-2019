@@ -9,10 +9,14 @@ const useObserver = options => {
          entries => setEntry(entries[0]),
          options
       );
+
       observer.observe(elRef.current);
+
       return () => observer.disconnect();
    }, []);
+
    return [observerEntry, elRef];
 };
 
 export default useObserver;
+

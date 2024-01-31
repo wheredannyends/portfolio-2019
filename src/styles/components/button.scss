@@ -2,10 +2,12 @@
    cursor: pointer;
    padding: spacing(sm) spacing(md);
    display: inline-flex;
+   gap: spacing(xs);
    justify-content: center;
    align-items: center;
+   text-align: center;
    border: 2px solid transparent;
-   border-radius: $border-radius;
+   border-radius: $rounded;
    background-color: $color-primary;
    color: $color-white;
    transition: color $transition, background-color $transition,
@@ -46,3 +48,4 @@
       margin-left: spacing(sm);
    }
 }
+

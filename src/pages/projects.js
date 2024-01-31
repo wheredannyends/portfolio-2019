@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import useProjects from '../queries/use-projects';
 import ProjectCard from '../components/project-card';
 import { FiArrowDown } from 'react-icons/fi';
@@ -7,19 +7,20 @@ const Projects = () => {
    const projects = useProjects();
    const [scrollPos, setScrollPos] = useState(0);
 
-   const listener = () => {
+   const listener = useCallback(() => {
       setScrollPos(() => window.scrollY);
-   };
+   }, []);
 
    useEffect(() => {
       window.addEventListener('scroll', listener, true);
+
       return () => {
          window.removeEventListener('scroll', listener, true);
       };
    }, []);
 
    return (
-      <section className="outer-wrap projects">
+      <section className="container projects">
          <ul className="projects__projects">
             {projects.map((project, index) => (
                <ProjectCard
@@ -42,3 +43,4 @@ const Projects = () => {
 };
 
 export default Projects;
+

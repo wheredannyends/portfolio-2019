@@ -15,6 +15,7 @@ const Layout = ({ children, location }) => {
             <title>{title}</title>
             <meta name="description" content={description} />
          </Helmet>
+
          <div className="page-wrap">
             <Header location={location.pathname} />
             <main>{children}</main>
@@ -25,3 +26,4 @@ const Layout = ({ children, location }) => {
 };
 
 export default Layout;
+

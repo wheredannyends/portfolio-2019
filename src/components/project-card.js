@@ -14,6 +14,7 @@ const ProjectCard = ({ project, index }) => {
       contentWrapRef,
       titleRef,
       subtitleRef,
+      stackRef,
       listRef,
       descriptionRef,
       buttonRef,
@@ -45,6 +46,7 @@ const ProjectCard = ({ project, index }) => {
          })
          .from(titleRef, ...animation.settings, animation.delay)
          .from(subtitleRef, ...animation.settings, animation.delay)
+         .from(stackRef, ...animation.settings, animation.delay)
          .from(listRef, ...animation.settings, animation.delay)
          .from(descriptionRef, ...animation.settings, animation.delay)
          .from(buttonRef, ...animation.settings, animation.delay);
@@ -72,7 +74,10 @@ const ProjectCard = ({ project, index }) => {
 
    return (
       <article className="project-card" ref={cardRef}>
-         <div class="project-card__image-wrap" ref={el => (imageWrapRef = el)}>
+         <div
+            className="project-card__image-wrap"
+            ref={el => (imageWrapRef = el)}
+         >
             <div
                className="project-card__image"
                style={{
@@ -83,6 +88,7 @@ const ProjectCard = ({ project, index }) => {
                <Image fadeIn={false} fluid={project.image.sharp.fluid}></Image>
             </div>
          </div>
+
          <div
             className={`project-card__content ${cardEntry.isIntersecting &&
                'active'}`}
@@ -97,43 +103,61 @@ const ProjectCard = ({ project, index }) => {
             <h2 className="project-card__title" ref={el => (titleRef = el)}>
                {project.title}
             </h2>
+
             <h5
                className="project-card__subtitle"
                ref={el => (subtitleRef = el)}
             >
                {project.subtitle}
             </h5>
+
+            <ul className="project-card__stack" ref={el => (stackRef = el)}>
+               {project.stack.map((item, index) => (
+                  <li className="project-card__stack-item" key={index}>
+                     {item}
+                  </li>
+               ))}
+            </ul>
+
             <ul className="project-card__info" ref={el => (listRef = el)}>
                <li className="project-card__info-item">
                   <FiBriefcase className="project-card__icon-label"></FiBriefcase>
+
                   <span className="project-card__info-value">
                      {project.role}
                   </span>
                </li>
+
                <li className="project-card__info-item">
                   <FiClock className="project-card__icon-label"></FiClock>
+
                   <span className="project-card__info-value">
                      {project.timeline}
                   </span>
                </li>
             </ul>
+
             <div
                className="project-card__description"
                ref={el => (descriptionRef = el)}
             >
                <MDXRenderer>{project.body}</MDXRenderer>
             </div>
-            <a
-               href={project.url}
-               target="_blank"
-               className="button project-card__button"
-               ref={el => (buttonRef = el)}
-            >
-               View Project
-            </a>
+
+            {project.url && (
+               <a
+                  href={project.url}
+                  target="_blank"
+                  className="button project-card__button"
+                  ref={el => (buttonRef = el)}
+               >
+                  View Project
+               </a>
+            )}
          </div>
       </article>
    );
 };
 
 export default ProjectCard;
+

@@ -21,9 +21,11 @@ $color-white: #faf9f7;
 
 // Fixed values
 $header-height: 10rem;
-$border-radius: 3px;
+$rounded: 4px;
+$rounded-lg: 8px;
 
 // Transitions
 $transition: 0.3s;
 $transition-long: 0.3s;
 $ease: cubic-bezier(0.6, 0.25, 0.24, 0.88);
+
