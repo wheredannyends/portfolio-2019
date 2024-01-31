@@ -51,5 +51,11 @@
    &__submit {
       margin-top: spacing(sm);
    }
+
+   &__submit-message {
+      color: $color-grey-lighter;
+      font-size: 1.8rem;
+      margin-top: spacing(sm);
+   }
 }
 
