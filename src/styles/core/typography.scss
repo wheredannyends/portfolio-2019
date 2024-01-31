@@ -5,7 +5,8 @@ $font-medium: 500;
 $font-bold: 700;
 
 body,
-input {
+input,
+textarea {
    font-family: $font;
    font-weight: $font-light;
 }

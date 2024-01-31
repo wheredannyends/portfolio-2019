@@ -29,7 +29,7 @@
 
    &__input {
       width: 100%;
-      font-weight: $font-bold;
+      font-weight: $font-medium;
       display: block;
       background-color: $color-grey-darkest !important;
       outline: none;
@@ -38,7 +38,7 @@
       border: 2px solid transparent;
       font-size: 2.4rem;
       color: $color-white;
-      resize: vertical;
+      resize: none;
       transition: border-color $transition;
       box-shadow: shadow(2);
 
