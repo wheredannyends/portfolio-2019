@@ -49,3 +49,38 @@
    }
 }
 
+.loading-spinner {
+   &__inner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $color-primary;
+
+      &::after {
+         content: ' ';
+         display: block;
+         width: 3.25rem;
+         height: 3.25rem;
+         margin: 8px;
+         border-radius: 50%;
+         border: 4px solid $color-white;
+         border-color: $color-white transparent $color-white transparent;
+         animation: spin 1.2s linear infinite;
+      }
+   }
+}
+
+@keyframes spin {
+   0% {
+      transform: rotate(0deg);
+   }
+   100% {
+      transform: rotate(360deg);
+   }
+}
+

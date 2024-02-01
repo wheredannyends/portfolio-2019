@@ -174,6 +174,11 @@ const Contact = () => {
                ref={el => (buttonRef = el)}
             >
                Send
+               {sending && (
+                  <div className="loading-spinner">
+                     <div className="loading-spinner__inner" />
+                  </div>
+               )}
             </button>
 
             {submitMessage && (

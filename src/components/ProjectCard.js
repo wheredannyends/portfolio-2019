@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Back, TimelineLite } from 'gsap';
 import { FiBriefcase, FiClock } from 'react-icons/fi';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import useObserver from '../hooks/use-observer';
+import useObserver from '../hooks/useObserver';
 
 const ProjectCard = ({ project, index, children }) => {
    const [imgPos, setImgPos] = useState(0);

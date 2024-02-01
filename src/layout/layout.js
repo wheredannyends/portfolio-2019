@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import Metadata from '../queries/use-sitemetadata';
+import Metadata from '../queries/useSiteMetadata';
 import Header from './header';
 import Footer from './footer';
 import '../styles/main.scss';

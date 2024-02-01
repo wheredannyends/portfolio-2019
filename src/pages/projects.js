@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import useProjects from '../queries/use-projects';
-import ProjectCard from '../components/project-card';
+import useProjects from '../queries/useProjects';
+import ProjectCard from '../components/ProjectCard';
 import { FiArrowDown } from 'react-icons/fi';
 
 const Projects = () => {
