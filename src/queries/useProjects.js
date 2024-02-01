@@ -3,13 +3,8 @@ import { graphql, useStaticQuery } from 'gatsby';
 const useProjects = () => {
    const data = useStaticQuery(graphql`
       {
-         projects: allMdx {
+         projects: allMdx(sort: { frontmatter: { order: ASC } }) {
             entries: nodes {
-               parent {
-                  ... on File {
-                     name
-                  }
-               }
                meta: frontmatter {
                   slug
                   title
@@ -34,24 +29,22 @@ const useProjects = () => {
       }
    `);
 
-   return data.projects.entries
-      .sort((a, b) => (a.parent.name < b.parent.name ? -1 : 1))
-      .map(
-         ({
-            meta: { slug, title, subtitle, role, timeline, stack, image, url },
-            body,
-         }) => ({
-            slug,
-            title,
-            subtitle,
-            role,
-            body,
-            image,
-            timeline,
-            stack: stack.split(','),
-            url,
-         })
-      );
+   return data.projects.entries.map(
+      ({
+         meta: { slug, title, subtitle, role, timeline, stack, image, url },
+         body,
+      }) => ({
+         slug,
+         title,
+         subtitle,
+         role,
+         body,
+         image,
+         timeline,
+         stack: stack.split(','),
+         url,
+      })
+   );
 };
 
 export default useProjects;
